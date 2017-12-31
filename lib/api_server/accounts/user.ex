@@ -1,7 +1,7 @@
-defmodule ApiServer.Account.User do
+defmodule ApiServer.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-  alias ApiServer.Account.User
+  alias ApiServer.Accounts.User
 
 
   schema "users" do
