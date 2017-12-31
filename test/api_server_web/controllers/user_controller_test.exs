@@ -14,9 +14,5 @@ defmodule ApiServerWeb.UserControllerTest do
             conn = get(conn, user_path(conn, :index))
             assert json_response(conn, 200)["data"] == []
         end
-
-        test "test2" do
-            IO.puts("test2")
-        end
     end
 end

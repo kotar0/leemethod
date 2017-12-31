@@ -4,6 +4,6 @@ defmodule ApiServerWeb.UserController do
 
     def index(conn, params) do
         users = Accounts.list_users
-        render(conn, "index.json", users: users)
+        render(conn, "index.json", users: users )
     end
 end
