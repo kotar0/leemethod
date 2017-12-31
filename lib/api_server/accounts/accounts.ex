@@ -11,4 +11,10 @@ defmodule ApiServer.Accounts do
         Repo.all(User)
     end
 
+    def create_user(attrs \\ %{}) do
+        %User{}
+        |> User.changeset(attrs)
+        |> Repo.insert()
+    end
+
 end
