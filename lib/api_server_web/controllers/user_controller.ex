@@ -14,4 +14,9 @@ defmodule ApiServerWeb.UserController do
         |> put_status(:created)
         |> render("show.json", user: user)
     end
+
+    def show(conn, %{"id" => id}) do
+        user = %User{id: String.to_integer(id), name: "testuser", age: 20}
+        render(conn, "show.json", user: user)
+    end
 end
