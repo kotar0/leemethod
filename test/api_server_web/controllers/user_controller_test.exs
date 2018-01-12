@@ -38,6 +38,16 @@ defmodule ApiServerWeb.UserControllerTest do
         
     end
 
+    describe "delete" do
+        setup [:create_user]
+
+        test "Delete user", %{conn: conn, user: %User{id: id}} do
+            conn = delete(conn, user_path(conn, :delete, id))
+            assert response(conn, 204)
+        end
+        
+    end
+
     defp create_user(_) do
         {:ok, user} = ApiServer.Accounts.create_user(@create_attrs)
         {:ok, user: user}

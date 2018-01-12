@@ -24,4 +24,9 @@ defmodule ApiServerWeb.UserController do
         {:ok, user} = Accounts.update_user(id, user_param)
         render(conn, "show.json", "user": user)
     end
+
+    def delete(conn, %{"id" => id}) do
+        res = Accounts.delete_user(id)
+        send_resp(conn, :no_content, "")
+    end
 end

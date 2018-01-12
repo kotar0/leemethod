@@ -26,4 +26,9 @@ defmodule ApiServer.Accounts do
         |> User.changeset(attrs)
         |> Repo.update()
     end
+
+    def delete_user(id) do
+        get_user!(id)
+        |> Repo.delete()        
+    end
 end
