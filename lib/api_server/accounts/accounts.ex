@@ -17,4 +17,13 @@ defmodule ApiServer.Accounts do
         |> Repo.insert()
     end
 
+    def get_user!(id) do
+        Repo.get!(User, id)
+    end
+
+    def update_user(id, attrs \\ %{}) do
+        get_user!(id)
+        |> User.changeset(attrs)
+        |> Repo.update()
+    end
 end

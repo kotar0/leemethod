@@ -3,6 +3,7 @@ defmodule ApiServerWeb.UserControllerTest do
     alias ApiServer.Accounts.User
 
     @create_attrs %{name: "testuser", age: 20}
+    @update_attrs %{name: "testuser2", age: 25}
 
     describe "index" do
         test "Get list all users", %{conn: conn} do
@@ -23,8 +24,18 @@ defmodule ApiServerWeb.UserControllerTest do
 
         test "Show user", %{conn: conn, user: %User{id: id}} do
             conn = get(conn, user_path(conn, :show, id))
-            assert json_response(conn, 200)["data"] == %{id: id, name: "testuser", age: 20}
+            assert json_response(conn, 200)["data"] == %{"id" => id, "name" => "testuser", "age" => 20}
         end
+    end
+
+    describe  "update" do
+        setup [:create_user]
+
+        test "Update user", %{conn: conn, user: %User{id: id}} do
+            conn = put(conn, user_path(conn, :update, id), user: @update_attrs )
+            assert json_response(conn, 200)["data"] == %{"id" => id, "name" => "testuser2", "age" => 25}
+        end
+        
     end
 
     defp create_user(_) do

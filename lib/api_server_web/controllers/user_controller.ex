@@ -16,7 +16,12 @@ defmodule ApiServerWeb.UserController do
     end
 
     def show(conn, %{"id" => id}) do
-        user = %User{id: String.to_integer(id), name: "testuser", age: 20}
+        user = Accounts.get_user!(id)
         render(conn, "show.json", user: user)
+    end
+
+    def update(conn, %{"id" => id, "user" => user_param}) do
+        {:ok, user} = Accounts.update_user(id, user_param)
+        render(conn, "show.json", "user": user)
     end
 end
